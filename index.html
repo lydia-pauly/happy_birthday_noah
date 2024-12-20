@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Noah</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #f3f4f6;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 4rem;
+            color: #333;
+            margin-bottom: 0;
+        }
+
+        .noah {
+            display: block;
+            color: #ff6347;
+            animation: colorChange 2s infinite;
+            margin-top: 0;
+        }
+
+        .message {
+            margin-top: 3rem;
+            font-size: 1.5rem;
+            color: #666;
+            text-align: center;
+        }
+
+        .sub-message {
+            margin-top: 1rem;
+            font-size: 1.0rem;
+            color: #666;
+            text-align: center;
+        }
+
+        @keyframes colorChange {
+            0% { color: #ff6347; }
+            25% { color: #ffa500; }
+            50% { color: #32cd32; }
+            75% { color: #1e90ff; }
+            100% { color: #ff6347; }
+        }
+
+        .confetti {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .confetti div {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--color);
+            opacity: 0.8;
+            border-radius: 50%;
+            animation: fall 3s linear infinite;
+        }
+
+        @keyframes fall {
+            from {
+                transform: translateY(-100vh) rotate(0deg);
+            }
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        .pokemon-group {
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .pokemon {
+            margin-top: 2.5em;
+            position: relative;
+            animation: bounce 2s infinite;
+            height: 70px;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="pokemon-group">
+        <img src="assets/avatar(5).png" class="pokemon"></img>
+        <img src="assets/avatar(6).png" class="pokemon"></img>
+        <img src="assets/avatar(7).png" class="pokemon"></img>
+        <img src="assets/avatar(8).png" class="pokemon"></img>
+    </div>
+    <h1 class="happy-birthday">Happy Birthday</h1>
+    <h1>
+        <span class="noah">Noah</span>
+    </h1>
+    <div class="message">[message here]</div>
+    <div class="sub-message">From Bevan (with help from Lydia)</div>
+    <div class="confetti" id="confetti"></div>
+    <div class="pokemon-group">
+        <img src="assets/avatar(1).png" class="pokemon"></img>
+        <img src="assets/avatar(2).png" class="pokemon"></img>
+        <img src="assets/avatar(3).png" class="pokemon"></img>
+        <img src="assets/avatar(4).png" class="pokemon"></img>
+    </div>
+    <div class="console"></div>
+    <div class="computer"></div>
+
+    <script>
+        // Generate confetti
+        const confettiContainer = document.getElementById('confetti');
+        const colors = ['#ff6347', '#ffa500', '#32cd32', '#1e90ff', '#ff69b4'];
+
+        function createConfettiPiece() {
+            const confetti = document.createElement('div');
+            const size = Math.random() * 10 + 5;
+            confetti.style.setProperty('--color', colors[Math.floor(Math.random() * colors.length)]);
+            confetti.style.width = `${size}px`;
+            confetti.style.height = `${size}px`;
+            confetti.style.left = `${Math.random() * 100}vw`;
+            confetti.style.animationDuration = `${Math.random() * 2 + 2}s`;
+            confettiContainer.appendChild(confetti);
+
+            setTimeout(() => {
+                confetti.remove();
+            }, 3000);
+        }
+
+        setInterval(createConfettiPiece, 100);
+    </script>
+</body>
+</html>
